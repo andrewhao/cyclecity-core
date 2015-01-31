@@ -2,16 +2,16 @@
 # Use 'createuser -s postgres' to create a general purpose db (super)user.
 
 development: &default
-  adapter: postgresql
+  adapter: postgis
   encoding: unicode
-  database: stressor_core_development
+  database: velocitas_core_development
   username: postgres
   pool: 5
   timeout: 5000
 
 test:
   <<: *default
-  database: stressor_core_test
+  database: velocitas_core_test
   min_messages: warning
 
 acceptance:
@@ -20,4 +20,5 @@ acceptance:
 
 production:
   <<: *default
+  database: velocitas_core_production
   url: <%= ENV['DATABASE_URL'] %>

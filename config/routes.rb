@@ -1,4 +1,4 @@
-StressorCore::Application.routes.draw do
+VelocitasCore::Application.routes.draw do
 
   root to: 'pages#root'
 
