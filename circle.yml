@@ -8,11 +8,11 @@ deployment:
   acceptance:
     branch: development
     commands:
-      - ./bin/deploy.sh stressor-core-acceptance:
+      - ./bin/deploy.sh velocitas-core-acceptance:
           timeout: 360
 
   production:
     branch: master 
     commands:
-      - ./bin/deploy.sh stressor-core:
+      - ./bin/deploy.sh velocitas-core:
           timeout: 360
