@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131053922) do
+ActiveRecord::Schema.define(version: 20150131081652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "track_points", force: :cascade do |t|
+    t.point    "coordinate"
+    t.decimal  "elevation",  precision: 2
+    t.integer  "heart_rate"
+    t.datetime "time"
+    t.integer  "tracks_id"
+  end
+
+  add_index "track_points", ["coordinate"], name: "index_track_points_on_coordinate"
+  add_index "track_points", ["tracks_id"], name: "index_track_points_on_tracks_id"
+
+  create_table "tracks", force: :cascade do |t|
+    t.geometry "path",        limit: {:srid=>3785, :type=>"multi_line_string"}
+    t.string   "title"
+    t.text     "description"
+    t.integer  "activity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tracks", ["path"], name: "index_tracks_on_path", spatial: true
 
 end
