@@ -1,0 +1,18 @@
+test:
+  override:
+    - bundle exec rake
+  post:
+    - bundle exec rake db:sample_data
+
+deployment:
+  acceptance:
+    branch: development
+    commands:
+      - ./bin/deploy.sh stressor-core-acceptance:
+          timeout: 360
+
+  production:
+    branch: master 
+    commands:
+      - ./bin/deploy.sh stressor-core:
+          timeout: 360
