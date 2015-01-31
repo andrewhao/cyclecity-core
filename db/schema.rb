@@ -18,18 +18,18 @@ ActiveRecord::Schema.define(version: 20150131081652) do
   enable_extension "postgis"
 
   create_table "track_points", force: :cascade do |t|
-    t.point    "coordinate"
-    t.decimal  "elevation",  precision: 2
-    t.integer  "heart_rate"
-    t.datetime "time"
-    t.integer  "tracks_id"
+    t.geography "coordinate", limit: {:srid=>4326, :type=>"point", :geographic=>true}
+    t.decimal   "elevation",                                                           precision: 2
+    t.integer   "heart_rate"
+    t.datetime  "time"
+    t.integer   "tracks_id"
   end
 
-  add_index "track_points", ["coordinate"], name: "index_track_points_on_coordinate"
+  add_index "track_points", ["coordinate"], name: "index_track_points_on_coordinate", spatial: true
   add_index "track_points", ["tracks_id"], name: "index_track_points_on_tracks_id"
 
   create_table "tracks", force: :cascade do |t|
-    t.geometry "path",        limit: {:srid=>3785, :type=>"multi_line_string"}
+    t.geometry "path",        limit: {:srid=>0, :type=>"multi_line_string"}
     t.string   "title"
     t.text     "description"
     t.integer  "activity_id"
