@@ -3,6 +3,13 @@ require File.expand_path('../boot', __FILE__)
 # require 'rails/all'
 require 'rails'
 
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_view/railtie'
+require 'action_mailer/railtie'
+require 'active_job/railtie'
+require 'sprockets/railtie'
+
 # From https://devcenter.heroku.com/articles/postgis, we need to
 # reset Rails' default adapter to PostGIS.
 # in config/application.rb, before the application loads
@@ -28,13 +35,6 @@ class PostGisOverrideRailtie < Rails::Railtie
     end
   end
 end
-
-require 'active_record/railtie'
-require 'action_controller/railtie'
-require 'action_view/railtie'
-require 'action_mailer/railtie'
-require 'active_job/railtie'
-require 'sprockets/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
