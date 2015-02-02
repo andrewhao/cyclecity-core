@@ -16,9 +16,11 @@ test:
 
 acceptance:
   <<: *default
+  adapter: postgis
   url: <%= ENV['DATABASE_URL'] %>
 
 production:
   <<: *default
+  adapter: postgis
   database: velocitas_core_production
   url: <%= ENV['DATABASE_URL'] %>
