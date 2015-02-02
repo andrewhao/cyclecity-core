@@ -2,7 +2,6 @@ require File.expand_path('../boot', __FILE__)
 
 # require 'rails/all'
 require 'rails'
-
 require 'active_record/railtie'
 require 'action_controller/railtie'
 require 'action_view/railtie'
@@ -30,7 +29,8 @@ class PostGisOverrideRailtie < Rails::Railtie
           username:            parsed_url.user,
           password:            parsed_url.password
         }
-        establish_connection(config)
+        Rails.logger.info config.inspect
+        ActiveRecord::Base.establish_connection(config)
       end
     end
   end
@@ -69,4 +69,3 @@ module VelocitasCore
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
-
