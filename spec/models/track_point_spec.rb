@@ -10,7 +10,7 @@ describe TrackPoint do
     end
 
     it "has a default coordinate" do
-      expect(subject.coordinate).to eq ""
+      expect(subject.coordinate).to be_instance_of RGeo::Geos::CAPIPointImpl
     end
   end
 end

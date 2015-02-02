@@ -11,6 +11,7 @@ development: &default
 
 test:
   <<: *default
+  adapter: postgis
   database: velocitas_core_test
   min_messages: warning
 
