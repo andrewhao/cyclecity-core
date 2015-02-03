@@ -8,6 +8,7 @@ gem 'rack-canonical-host'
 gem 'rails', '~> 4.2.0'
 gem 'pg'
 gem 'activerecord-postgis-adapter', github: "rgeo/activerecord-postgis-adapter", branch: "activerecord42"
+gem 'grape'
 
 gem 'slim-rails'
 gem 'sass-rails'
