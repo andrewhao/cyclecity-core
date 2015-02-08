@@ -42,12 +42,14 @@ describe VelocitasCore::API, type: :request do
     context "JSON response" do
       it "returns a processing status JSON" do
         expect_any_instance_of(VelocitasCore::GpxDownloader).to receive(:download).and_return(true)
+        expect_any_instance_of(VelocitasCore::GpxDownloader).to receive(:success?).and_return(true)
         do_request
         expect(JSON.parse(response.body)).to include("status" => "processing")
       end
 
       it "returns error status JSON if fail" do
         expect_any_instance_of(VelocitasCore::GpxDownloader).to receive(:download).and_return(false)
+        expect_any_instance_of(VelocitasCore::GpxDownloader).to receive(:success?).and_return(false)
         do_request
         expect(JSON.parse(response.body)).to include("status" => "error")
       end

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.1"
+  creator="Runmeter - http://www.runmeter.com"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:abvio="http://www.abvio.com/xmlschemas/1"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/gpx/1/1/gpx.xsd">
+  <metadata>
+    <name>Runmeter-Run-20150109-0635.gpx</name>
+    <desc>Runmeter Run Jan 9, 2015, 6:35:47 AM</desc>
+    <author><name>Abvio Runmeter</name><email id="support" domain="abvio.com"/></author>
+    <copyright author="Abvio Inc."><year>2015</year></copyright>
+    <link href="http://www.runmeter.com">
+      <text>Abvio Runmeter</text>
+      <type>text/html</type>
+    </link>
+    <time>2015-01-09T15:31:28Z</time>
+    <keywords>Abvio, Runmeter, run</keywords>
+    <bounds minlat="34.0904676" minlon="-118.2551420" maxlat="34.0916136" maxlon="-118.2526552"/>
+  </metadata>
+  <trk>
+    <name><![CDATA[New Route]]></name>
+    <type><![CDATA[Run]]></type>
+    <trkseg>
+      <trkpt lat="10" lon="10"><ele>10.0</ele><time>2015-01-01T00:00:00Z</time></trkpt>
+      <trkpt lat="20" lon="20"><ele>20.0</ele><time>2015-01-01T00:01:00Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

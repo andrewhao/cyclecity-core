@@ -10,6 +10,8 @@ gem 'pg'
 gem 'activerecord-postgis-adapter', github: "rgeo/activerecord-postgis-adapter", branch: "activerecord42"
 gem 'grape'
 gem "andrewhao-gpx"
+gem "pry-byebug"
+gem "pry"
 
 gem "iron_worker_ng"
 gem "faraday"
