@@ -46,6 +46,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    andrewhao-gpx (0.7)
+      nokogiri
+      rake
     arel (6.0.0)
     autoprefixer-rails (5.0.0.3)
       execjs
@@ -103,6 +106,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.6)
     foreman (0.77.0)
       dotenv (~> 1.0.2)
@@ -186,6 +191,7 @@ GEM
     minitest (5.5.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    multipart-post (2.0.0)
     nenv (0.2.0)
     net-http-persistent (2.9.4)
     netrc (0.10.2)
@@ -342,6 +348,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgis-adapter!
+  andrewhao-gpx
   awesome_print
   better_errors
   binding_of_caller
@@ -350,6 +357,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   factory_girl_rails
+  faraday
   foreman
   fuubar
   grape
