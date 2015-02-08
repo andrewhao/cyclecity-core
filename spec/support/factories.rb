@@ -4,5 +4,6 @@ FactoryGirl.define do
   end
 
   factory :track do
+    activity
   end
 end
