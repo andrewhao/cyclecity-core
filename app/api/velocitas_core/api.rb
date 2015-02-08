@@ -1,3 +1,4 @@
+# Defines the core upload and view APIs.
 module VelocitasCore
   class API < Grape::API
     version "v1", vendor: "g9labs"
@@ -6,7 +7,19 @@ module VelocitasCore
     resource :tracks do
       desc "Show all tracks"
       get do
-        "All tracks!"
+        tf = TrackFetcher.new
+        tf.fetch
+      end
+
+      desc "upload a track"
+      params do
+        requires :url, type: String, desc: "Link to the GPX file, publicly accessible"
+      end
+
+      post do
+        gd = GpxDownloader.new(params[:url])
+        is_success = gd.download
+        {status: (is_success ? "processing" : "error")}
       end
     end
   end
