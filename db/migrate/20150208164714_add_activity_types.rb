@@ -1,5 +1,6 @@
 class AddActivityTypes < ActiveRecord::Migration
   def up
+    Activity.create(key: "unknown")
     Activity.create(key: "run")
     Activity.create(key: "cycle")
     Activity.create(key: "hike")
