@@ -10,6 +10,8 @@ gem 'pg'
 gem 'activerecord-postgis-adapter', github: "rgeo/activerecord-postgis-adapter", branch: "activerecord42"
 gem 'grape'
 
+gem "iron_worker_ng"
+
 gem 'slim-rails'
 gem 'sass-rails'
 gem 'bootstrap-sass'
