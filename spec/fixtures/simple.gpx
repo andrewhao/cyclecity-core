@@ -23,8 +23,8 @@
     <name><![CDATA[New Route]]></name>
     <type><![CDATA[Run]]></type>
     <trkseg>
-      <trkpt lat="10" lon="10"><ele>10.0</ele><time>2015-01-01T00:00:00Z</time></trkpt>
-      <trkpt lat="20" lon="20"><ele>20.0</ele><time>2015-01-01T00:01:00Z</time></trkpt>
+      <trkpt lat="10" lon="15"><ele>10.0</ele><time>2015-01-01T00:00:00Z</time></trkpt>
+      <trkpt lat="20" lon="25"><ele>20.0</ele><time>2015-01-01T00:01:00Z</time></trkpt>
     </trkseg>
   </trk>
 </gpx>

@@ -47,13 +47,11 @@ describe VelocitasCore::GpxImporter do
         end
 
         it "imports points with correct latitude" do
-          pending
-          expect(point.coordinate.latitude).to eq 20.0
+          expect(point.coordinate.y).to eq 20.0
         end
 
         it "imports points with correct longitude" do
-          pending
-          expect(point.coordinate.longitude).to eq 20.0
+          expect(point.coordinate.x).to eq 25.0
         end
       end
     end
