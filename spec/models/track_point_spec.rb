@@ -15,13 +15,6 @@ describe TrackPoint do
     end
   end
 
-  describe "#elevation" do
-    it "creates high elevations" do
-      pending "This fails PG for some reason"
-      described_class.create(elevation: 100.0)
-    end
-  end
-
   describe ".create_from_gpx_track_point" do
     let(:lat) { 10 }
     let(:lon) { 11 }
