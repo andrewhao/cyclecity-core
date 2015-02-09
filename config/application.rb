@@ -71,5 +71,9 @@ module VelocitasCore
     # Add Grape APIs
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+
+    # Add Grape APIs
+    config.paths.add File.join('app', 'interactors'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'interactors', '*')]
   end
 end

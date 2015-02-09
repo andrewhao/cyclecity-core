@@ -12,6 +12,8 @@ gem 'grape'
 gem "andrewhao-gpx", require: "gpx"
 gem "pry-byebug"
 gem "pry"
+gem "interactor"
+gem "newrelic_rpm"
 
 gem "iron_worker_ng"
 gem "faraday"
@@ -50,6 +52,7 @@ group :test, :development do
 end
 
 group :development do
+  gem "ruby-prof"
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'foreman'

@@ -17,9 +17,9 @@ module VelocitasCore
       end
 
       post do
-        gd = GpxDownloader.new(params[:url])
-        file = gd.download
-        {status: (gd.success? ? "processing" : "error")}
+        workflow = VelocitasCore::ImportGpx.new(params)
+        workflow.call
+        {status: (workflow.context.success? ? "processing" : "error")}
       end
     end
   end
