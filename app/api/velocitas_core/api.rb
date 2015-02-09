@@ -22,6 +22,5 @@ module VelocitasCore
         {status: (workflow.context.success? ? "processing" : "error")}
       end
     end
-
   end
 end

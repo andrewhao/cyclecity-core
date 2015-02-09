@@ -5,7 +5,7 @@ module VelocitasCore
 
     # Currently just fetches a global list.
     def fetch
-      # TODO/andrewhao
+      Track.all
     end
   end
 end
