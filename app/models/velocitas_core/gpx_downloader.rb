@@ -37,7 +37,9 @@ module VelocitasCore
 
     # Returns the handle to the File object that this file is downloaded to
     def save!
-      file = File.new(File.join(basedir, computed_filename), 'wb')
+      path = File.join(basedir, computed_filename)
+      Rails.logger.info "Saved GPX file as #{path}"
+      file = File.new(path, 'wb')
       file.write contents
       file.close
       file

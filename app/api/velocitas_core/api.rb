@@ -19,6 +19,10 @@ module VelocitasCore
       post do
         gd = GpxDownloader.new(params[:url])
         file = gd.download
+        if gd.success?
+          import_job = GpxImporter.new(File.open(file))
+          import_job.import
+        end
         {status: (gd.success? ? "processing" : "error")}
       end
     end

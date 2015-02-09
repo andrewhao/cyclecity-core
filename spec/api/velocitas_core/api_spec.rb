@@ -28,8 +28,15 @@ describe VelocitasCore::API, type: :request do
     end
 
     it "queues up a GPX download job" do
+      file = double(:file)
       expect_any_instance_of(VelocitasCore::GpxDownloader).to \
         receive(:download).
+        and_return(file)
+      expect_any_instance_of(VelocitasCore::GpxDownloader).to \
+        receive(:success?).
+        and_return(true)
+      expect_any_instance_of(VelocitasCore::GpxImporter).to \
+        receive(:import).
         and_return(true)
       do_request
     end
