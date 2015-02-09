@@ -15,6 +15,7 @@ module VelocitasCore
           TrackPoint.create_from_gpx_track_point(p, parent_track: trk)
         end
       end
+      true
     end
 
     private

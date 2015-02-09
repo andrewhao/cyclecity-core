@@ -22,19 +22,12 @@ describe VelocitasCore::API, type: :request do
       post "/api/v1/tracks", url: url
     end
 
-    it "submits a link to the GPX download service" do
-      allow_any_instance_of(VelocitasCore::GpxImportWorkflow).to \
-        receive(:process).
-        and_return(true)
+    it "queues up an import task and returns a 200 OK" do
+      allow_any_instance_of(VelocitasCore::ImportGpx).to \
+        receive(:call).
+        and_return(double(success?: true))
       do_request
       expect(response).to be_created
-    end
-
-    it "queues up a GPX download job" do
-      expect_any_instance_of(VelocitasCore::GpxImportWorkflow).to \
-        receive(:process).
-        and_return(true)
-      do_request
     end
 
     it "returns an error code when you don't supply the url param" do
@@ -43,18 +36,22 @@ describe VelocitasCore::API, type: :request do
     end
 
     context "JSON response" do
-      it "returns a processing status JSON" do
-        expect_any_instance_of(VelocitasCore::GpxImportWorkflow).to \
-          receive(:process).
-          and_return(true)
+      it "returns a processing status JSON if success" do
+        expect_any_instance_of(VelocitasCore::ImportGpx).to \
+          receive(:call).and_return(true)
+        expect_any_instance_of(VelocitasCore::ImportGpx).to \
+          receive(:context)
+          .and_return(double(success?: true))
         do_request
         expect(JSON.parse(response.body)).to include("status" => "processing")
       end
 
       it "returns error status JSON if fail" do
-        expect_any_instance_of(VelocitasCore::GpxImportWorkflow).to \
-          receive(:process).
-          and_return(false)
+        expect_any_instance_of(VelocitasCore::ImportGpx).to \
+          receive(:call).and_return(true)
+        expect_any_instance_of(VelocitasCore::ImportGpx).to \
+          receive(:context)
+          .and_return(double(success?: false))
         do_request
         expect(JSON.parse(response.body)).to include("status" => "error")
       end

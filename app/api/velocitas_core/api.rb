@@ -17,29 +17,11 @@ module VelocitasCore
       end
 
       post do
-        workflow = GpxImportWorkflow.new(params[:url])
-        is_success = workflow.process
-        {status: (is_success ? "processing" : "error")}
+        workflow = VelocitasCore::ImportGpx.new(params)
+        workflow.call
+        {status: (workflow.context.success? ? "processing" : "error")}
       end
     end
 
-  end
-
-  class GpxImportWorkflow
-    attr_accessor :url
-
-    def initialize(url)
-      @url = url
-    end
-
-    def process
-      gd = GpxDownloader.new(url)
-      file = gd.download
-      if gd.success?
-        import_job = GpxImporter.new(File.open(file))
-        import_job.import
-      end
-      gd.success?
-    end
   end
 end
