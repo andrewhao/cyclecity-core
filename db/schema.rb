@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208164714) do
+ActiveRecord::Schema.define(version: 20150209011011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150208164714) do
 
   create_table "track_points", force: :cascade do |t|
     t.st_point "coordinate", :geographic=>true
-    t.decimal   "elevation",                                                           precision: 2
+    t.decimal   "elevation"
     t.integer   "heart_rate"
     t.datetime  "time"
     t.integer   "track_id"
