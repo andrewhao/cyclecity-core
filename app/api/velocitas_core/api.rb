@@ -18,8 +18,8 @@ module VelocitasCore
 
       post do
         gd = GpxDownloader.new(params[:url])
-        is_success = gd.download
-        {status: (is_success ? "processing" : "error")}
+        file = gd.download
+        {status: (gd.success? ? "processing" : "error")}
       end
     end
   end
