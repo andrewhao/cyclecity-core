@@ -23,20 +23,16 @@ describe VelocitasCore::API, type: :request do
     end
 
     it "submits a link to the GPX download service" do
+      allow_any_instance_of(VelocitasCore::GpxImportWorkflow).to \
+        receive(:process).
+        and_return(true)
       do_request
       expect(response).to be_created
     end
 
     it "queues up a GPX download job" do
-      file = double(:file)
-      expect_any_instance_of(VelocitasCore::GpxDownloader).to \
-        receive(:download).
-        and_return(file)
-      expect_any_instance_of(VelocitasCore::GpxDownloader).to \
-        receive(:success?).
-        and_return(true)
-      expect_any_instance_of(VelocitasCore::GpxImporter).to \
-        receive(:import).
+      expect_any_instance_of(VelocitasCore::GpxImportWorkflow).to \
+        receive(:process).
         and_return(true)
       do_request
     end
@@ -48,15 +44,17 @@ describe VelocitasCore::API, type: :request do
 
     context "JSON response" do
       it "returns a processing status JSON" do
-        expect_any_instance_of(VelocitasCore::GpxDownloader).to receive(:download).and_return(true)
-        expect_any_instance_of(VelocitasCore::GpxDownloader).to receive(:success?).and_return(true)
+        expect_any_instance_of(VelocitasCore::GpxImportWorkflow).to \
+          receive(:process).
+          and_return(true)
         do_request
         expect(JSON.parse(response.body)).to include("status" => "processing")
       end
 
       it "returns error status JSON if fail" do
-        expect_any_instance_of(VelocitasCore::GpxDownloader).to receive(:download).and_return(false)
-        expect_any_instance_of(VelocitasCore::GpxDownloader).to receive(:success?).and_return(false)
+        expect_any_instance_of(VelocitasCore::GpxImportWorkflow).to \
+          receive(:process).
+          and_return(false)
         do_request
         expect(JSON.parse(response.body)).to include("status" => "error")
       end
