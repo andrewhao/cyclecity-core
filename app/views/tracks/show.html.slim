@@ -1,0 +1,35 @@
+.page-header
+  h1 Track
+
+div#map
+
+= link_to "Download Link", @track.file_uri
+
+/- if can?(:edit, @track)
+= link_to text_with_icon('Edit', 'edit'), edit_track_path(@track), class: 'btn btn-default'
+'
+= link_to text_with_icon('Back', 'chevron-left'), tracks_path, class: 'btn btn-default'
+
+/- if can?(:destroy, @track)
+'
+= link_to text_with_icon('Destroy', 'remove'), track_path(@track), \
+  method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger'
+
+css:
+  #map {
+    height: 800px
+  }
+
+javascript:
+  // Provide your access token
+  L.mapbox.accessToken = 'pk.eyJ1IjoiYW5kcmV3aGFvIiwiYSI6IndWNDBXRkkifQ.Cge0ieORVxF2tPArcg0c6g';
+  // Create a map in the div #map
+  var mapId = 'examples.map-i86nkdio';
+  //var mapId = 'andrewhao.l6694n28';
+  var map = L.mapbox.map('map', mapId);
+  //L.mapbox.accessToken = "pk.eyJ1IjoiYW5kcmV3aGFvIiwiYSI6IndWNDBXRkkifQ.Cge0ieORVxF2tPArcg0c6g"
+  var runLayer = omnivore.gpx('#{@track.file_uri}')
+    .on('ready', function() {
+      map.fitBounds(runLayer.getBounds());
+    })
+    .addTo(map);
