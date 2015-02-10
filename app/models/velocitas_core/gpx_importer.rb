@@ -7,7 +7,7 @@ module VelocitasCore
 
     def call
       context.tracks = []
-      gpx_file.tracks.each do |tracki
+      gpx_file.tracks.each do |track|
         trk = Track.create title: title, activity: Activity.run, file_uri: uri
         context.tracks << trk
         pts = track.segments.flat_map(&:points)
