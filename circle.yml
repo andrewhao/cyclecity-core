@@ -1,6 +1,10 @@
+database:
+  override:
+    - cp config/database.yml.ci config/database.yml
+    - bundle exec rake db:drop db:create db:migrate
+
 test:
   override:
-    - bundle exec rake db:drop db:create db:migrate
     - bundle exec rake
   post:
     - bundle exec rake db:sample_data
