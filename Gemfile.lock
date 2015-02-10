@@ -1,11 +1,11 @@
 GIT
   remote: git://github.com/rgeo/activerecord-postgis-adapter.git
-  revision: bc19967c9f4edebfca6313357bf3f4373c33eefc
+  revision: 61fc668b4e51740c583bf82be8857ea118186e84
   branch: activerecord42
   specs:
     activerecord-postgis-adapter (3.0.0.beta1)
       activerecord (~> 4.2)
-      rgeo-activerecord (~> 2.0)
+      rgeo-activerecord (~> 2.1)
 
 GEM
   remote: https://rubygems.org/
@@ -269,7 +269,7 @@ GEM
       net-http-persistent (>= 2.9.1)
       netrc
     rgeo (0.3.20)
-    rgeo-activerecord (2.0.0)
+    rgeo-activerecord (2.1.0)
       activerecord (~> 4.2)
       rgeo (~> 0.3)
     rspec (3.1.0)
