@@ -1,15 +1,16 @@
 # Takes a GPX file, loads it up with the GPX lib and imports it into the DB
 module VelocitasCore
   class GpxImporter
-    attr_accessor :file
+    attr_accessor :file, :uri
 
-    def initialize(file)
+    def initialize(file, uri)
       @file = file
+      @uri = uri
     end
 
     def import
       gpx_file.tracks.each do |track|
-        trk = Track.create title: title, activity: Activity.run
+        trk = Track.create title: title, activity: Activity.run, file_uri: uri
         pts = track.segments.flat_map(&:points)
         pts.each do |p|
           TrackPoint.create_from_gpx_track_point(p, parent_track: trk)

@@ -3,7 +3,9 @@ require "rails_helper"
 describe VelocitasCore::GpxImporter do
   let(:file) { File.new('spec/fixtures/simple.gpx') }
   let!(:activity) { create :activity, key: "run" }
-  subject { described_class.new(file) }
+  let(:uri) { "https://www.filepicker.io/api/file/a8gK5AgGSKaYqKY26F0w" }
+
+  subject { described_class.new(file, uri) }
 
   describe "#import" do
     context "for the parent track" do
@@ -21,6 +23,11 @@ describe VelocitasCore::GpxImporter do
       it "adds an activity type of running for the default" do
         subject.import
         expect(Track.last.activity).to be_run
+      end
+
+      it "adds the URI of the cloud file for the default" do
+        subject.import
+        expect(Track.last.file_uri).to eq uri
       end
     end
 

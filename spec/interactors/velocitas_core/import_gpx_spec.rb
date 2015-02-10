@@ -16,6 +16,8 @@ describe VelocitasCore::ImportGpx do
         receive(:success?).and_return(true)
       expect_any_instance_of(VelocitasCore::GpxImporter).to \
         receive(:import).and_return(true)
+      expect_any_instance_of(VelocitasCore::StoreGpxFile).to \
+        receive(:call).and_return(true)
       subject.call
 
       expect(context).to be_a_success

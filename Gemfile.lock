@@ -374,6 +374,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   database_cleaner
+  dotenv
   factory_girl_rails
   faraday
   filepicker_client!

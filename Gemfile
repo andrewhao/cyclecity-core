@@ -16,6 +16,7 @@ gem "interactor"
 gem "newrelic_rpm"
 gem "stressfactor"
 gem "filepicker_client", github: "infowrap/filepicker_client"
+gem "dotenv"
 
 gem "iron_worker_ng"
 gem "faraday"
