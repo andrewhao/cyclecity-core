@@ -18,6 +18,8 @@ describe VelocitasCore::ImportGpx do
         receive(:call).and_return(true)
       expect_any_instance_of(VelocitasCore::StoreGpxFile).to \
         receive(:call).and_return(true)
+      expect_any_instance_of(VelocitasCore::AnalyzeTrack).to \
+        receive(:call).and_return(true)
       subject.call
 
       expect(context).to be_a_success
