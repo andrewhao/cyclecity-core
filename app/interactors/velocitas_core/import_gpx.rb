@@ -6,8 +6,12 @@ module VelocitasCore
       gd = GpxDownloader.new(context.url)
       file = gd.download
       if gd.success?
-        import_job = GpxImporter.new(File.open(file))
-        import_job.import
+        storage = StoreGpxFile.new(file: File.open(file))
+        storage.call
+
+        import_job = GpxImporter.new(file: File.open(file),
+                                     uri: storage.context.file_uri)
+        import_job.call
       else
         context.fail!(message: "Download failed")
       end
