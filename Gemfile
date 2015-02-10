@@ -14,6 +14,8 @@ gem "pry-byebug"
 gem "pry"
 gem "interactor"
 gem "newrelic_rpm"
+gem "stressfactor"
+gem "filepicker-rails"
 
 gem "iron_worker_ng"
 gem "faraday"
