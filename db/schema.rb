@@ -33,18 +33,18 @@ ActiveRecord::Schema.define(version: 20150210043449) do
   add_index "track_analytics", ["track_id"], name: "index_track_analytics_on_track_id", using: :btree
 
   create_table "track_points", force: :cascade do |t|
-    t.st_point "coordinate", :geographic=>true
+    t.geography "coordinate", limit: {:srid=>4326, :type=>"point", :geographic=>true}
     t.decimal   "elevation"
     t.integer   "heart_rate"
     t.datetime  "time"
     t.integer   "track_id"
   end
 
-  add_index "track_points", ["coordinate"], name: "index_track_points_on_coordinate", spatial: true
+  add_index "track_points", ["coordinate"], name: "index_track_points_on_coordinate", using: :gist
   add_index "track_points", ["track_id"], name: "index_track_points_on_track_id", using: :btree
 
   create_table "tracks", force: :cascade do |t|
-    t.multi_line_string "path"
+    t.geometry "path",        limit: {:srid=>0, :type=>"multi_line_string"}
     t.string   "title"
     t.text     "description"
     t.integer  "activity_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150210043449) do
     t.datetime "recorded_at"
   end
 
-  add_index "tracks", ["path"], name: "index_tracks_on_path", spatial: true
+  add_index "tracks", ["path"], name: "index_tracks_on_path", using: :gist
+
   add_foreign_key "track_analytics", "tracks"
 end
