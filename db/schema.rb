@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209011011) do
+ActiveRecord::Schema.define(version: 20150210043449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20150209011011) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "track_analytics", force: :cascade do |t|
+    t.integer  "track_id"
+    t.integer  "stress_score"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "track_analytics", ["track_id"], name: "index_track_analytics_on_track_id", using: :btree
+
   create_table "track_points", force: :cascade do |t|
     t.st_point "coordinate", :geographic=>true
     t.decimal   "elevation"
@@ -32,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150209011011) do
   end
 
   add_index "track_points", ["coordinate"], name: "index_track_points_on_coordinate", spatial: true
-  add_index "track_points", ["track_id"], name: "index_track_points_on_track_id"
+  add_index "track_points", ["track_id"], name: "index_track_points_on_track_id", using: :btree
 
   create_table "tracks", force: :cascade do |t|
     t.multi_line_string "path"
@@ -41,8 +50,9 @@ ActiveRecord::Schema.define(version: 20150209011011) do
     t.integer  "activity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "recorded_at"
   end
 
   add_index "tracks", ["path"], name: "index_tracks_on_path", spatial: true
-
+  add_foreign_key "track_analytics", "tracks"
 end
