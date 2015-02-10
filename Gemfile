@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Heroku uses the ruby version to configure your application's runtime.
 ruby '2.2.0'
 
+gem "mapbox-rails"
 gem 'puma'
 gem 'rack-canonical-host'
 gem 'rails', '~> 4.2.0'

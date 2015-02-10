@@ -193,6 +193,7 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mapbox-rails (1.6.1.1)
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
@@ -391,6 +392,7 @@ DEPENDENCIES
   jasmine-rails
   jquery-rails
   launchy
+  mapbox-rails
   newrelic_rpm
   pg
   poltergeist

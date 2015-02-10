@@ -1,0 +1,31 @@
+div.page-header
+  h1 Listing tracks
+
+table.table.table-striped
+  thead
+    tr
+      th ID
+      th Avg Pace
+      th Grade Adjusted Pace
+      th Stress Score
+      th Actions
+
+  tbody
+    - @tracks.reverse.each do |track|
+      - analytics = track.track_analytic
+      tr
+        /td= link_to_if can?(:show, track), track.id, track_path(track)
+        td= link_to track.id, track
+        td= number_with_precision(analytics.try(:average_pace), precision: 2)
+        td= number_with_precision(analytics.try(:grade_adjusted_pace), precision: 2)
+        td= number_with_precision(analytics.try(:stress_score), precision: 2)
+        td
+          /- if can? :edit, track
+          = link_to text_with_icon('Edit', 'edit'), edit_track_path(track), class: 'btn btn-default btn-xs'
+          '
+          /- if can? :destroy, track
+          = link_to text_with_icon('Destroy', 'remove'), track_path(track), \
+                    method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-default btn-xs btn-danger'
+
+/- if can? :create, Track
+= link_to text_with_icon('New Track', 'plus'), new_track_path, class: 'btn btn-primary'
