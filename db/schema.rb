@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210071945) do
+ActiveRecord::Schema.define(version: 20150210074614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,9 +25,11 @@ ActiveRecord::Schema.define(version: 20150210071945) do
 
   create_table "track_analytics", force: :cascade do |t|
     t.integer  "track_id"
-    t.integer  "stress_score"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.decimal  "stress_score"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.decimal  "grade_adjusted_pace"
+    t.decimal  "average_pace"
   end
 
   add_index "track_analytics", ["track_id"], name: "index_track_analytics_on_track_id", using: :btree
