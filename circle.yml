@@ -1,5 +1,6 @@
 test:
   override:
+    - bundle exec rake db:drop db:create db:migrate
     - bundle exec rake
   post:
     - bundle exec rake db:sample_data
