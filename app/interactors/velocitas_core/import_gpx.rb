@@ -3,9 +3,10 @@ module VelocitasCore
     include Interactor
 
     def call
-      gd = GpxDownloader.new(context.url)
-      file = gd.download
-      if gd.success?
+      gd = GpxDownloader.new(url: context.url)
+      gd.call
+      file = gd.context.file
+      if gd.context.success?
         storage = StoreGpxFile.new(file: File.open(file))
         storage.call
 
