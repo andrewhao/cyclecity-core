@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150210074614) do
 
   create_table "track_points", force: :cascade do |t|
     t.st_point "coordinate"
+
     #t.geography "coordinate", limit: {:srid=>4326, :type=>"point", :geographic=>true}
     t.decimal   "elevation"
     t.integer   "heart_rate"
