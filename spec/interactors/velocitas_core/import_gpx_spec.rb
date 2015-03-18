@@ -11,9 +11,11 @@ describe VelocitasCore::ImportGpx do
   describe "#call" do
     it "downloads gpx and imports it" do
       expect_any_instance_of(VelocitasCore::GpxDownloader).to \
-        receive(:download).and_return(file)
+        receive(:call).and_return(true)
       expect_any_instance_of(VelocitasCore::GpxDownloader).to \
-        receive(:success?).and_return(true)
+        receive(:context)
+        .at_least(:once)
+        .and_return(double(success?: true, file: file))
       expect_any_instance_of(VelocitasCore::GpxImporter).to \
         receive(:call).and_return(true)
       expect_any_instance_of(VelocitasCore::StoreGpxFile).to \
@@ -26,10 +28,12 @@ describe VelocitasCore::ImportGpx do
     end
 
     it "fails when download fails" do
-      allow_any_instance_of(VelocitasCore::GpxDownloader).to \
-        receive(:download).and_return(file)
-      allow_any_instance_of(VelocitasCore::GpxDownloader).to \
-        receive(:success?).and_return(false)
+      expect_any_instance_of(VelocitasCore::GpxDownloader).to \
+        receive(:call).and_return(true)
+      expect_any_instance_of(VelocitasCore::GpxDownloader).to \
+        receive(:context)
+        .at_least(:once)
+        .and_return(double(success?: false, file: file))
       expect {
         subject.call
       }.to raise_error(Interactor::Failure)

@@ -1,29 +1,31 @@
 # Downloads a URL to a local file on the worker
 module VelocitasCore
   class GpxDownloader
-    attr_accessor :url, :response, :filename
+    include Interactor
+
+    delegate :url, :filename, :attachment, to: :context
+    attr_accessor :response
+    #attr_accessor :url, :response, :filename
 
     # @param [String] url The URL to the GPX file.
     # @param [String] filename (Optional) The desired filename of the desired file.
     #   Otherwise, it gets the name of the MD5 sum of its file contents.
-    def initialize(url, filename: filename)
-      @url = url
-      @filename = filename
-      @response = nil
-    end
+    #def initialize(url, filename: filename)
+    #  @url = url
+    #  @filename = filename
+    #  @response = nil
+    #end
 
-    def download
+    def call
       @response = connection.get(url)
-      if success?
-        save!
+      if status == 200
+        context.file = save!
       else
-        nil
+        context.fail! message: "Download failed"
       end
     end
 
-    def success?
-      status == 200
-    end
+    delegate :success?, to: :context
 
     def status
       response.try(:status)

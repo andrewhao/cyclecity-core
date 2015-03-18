@@ -4,6 +4,7 @@ module VelocitasCore
 
     def call
       fl = context.file
+      Rails.logger.info "Storing file as #{fl.inspect}"
       stored_file = client.store(fl)
 
       context.filepicker_filename = stored_file.filename
