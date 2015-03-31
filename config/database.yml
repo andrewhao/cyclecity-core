@@ -6,6 +6,7 @@ development: &default
   encoding: unicode
   database: velocitas_core_development
   username: postgres
+  host: db
   pool: 5
   timeout: 5000
 
@@ -14,6 +15,7 @@ test:
   adapter: postgis
   database: velocitas_core_test
   min_messages: warning
+  host: db
 
 acceptance:
   <<: *default

@@ -1,4 +1,4 @@
-# Corresponds to a point in space. Equivalent of a
+# Corresponds to a point on a geographical space. Corresponding concept to the
 # GPX <trkpt> element
 class TrackPoint < ActiveRecord::Base
   # By default, use the GEOS implementation for spatial columns.

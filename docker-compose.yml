@@ -1,0 +1,17 @@
+web:
+  build: .
+  volumes:
+    - .:/velocitas-core
+  ports:
+    - "3000:3000"
+  links:
+    - db
+  env_file:
+    - ".env"
+
+db:
+  image: mdillon/postgis:latest
+  ports:
+    - "15432:5432"
+  env_file:
+    - ".env.db"
