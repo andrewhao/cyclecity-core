@@ -1,5 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
+require "dotenv"
+Dotenv.load!
+
 # require 'rails/all'
 require 'rails'
 require 'active_record/railtie'
@@ -67,5 +70,13 @@ module VelocitasCore
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Add Grape APIs
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+
+    # Add Grape APIs
+    config.paths.add File.join('app', 'interactors'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'interactors', '*')]
   end
 end

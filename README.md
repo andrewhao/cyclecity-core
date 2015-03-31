@@ -1,6 +1,8 @@
-# Stressor Core
+# Velocitas Core
 
-...
+The core API behind the Velocitas GPS route analytics service.
+
+[![Code Climate](https://codeclimate.com/github/andrewhao/velocitas-core/badges/gpa.svg)](https://codeclimate.com/github/andrewhao/velocitas-core)
 
 Generated with [Raygun](https://github.com/carbonfive/raygun).
 

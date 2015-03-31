@@ -1,0 +1,9 @@
+test:
+  host: localhost
+  min_messages: warning
+  database: circle_ruby_test
+  adapter: postgis
+  timeout: 5000
+  pool: 5
+  username: ubuntu
+  encoding: unicode

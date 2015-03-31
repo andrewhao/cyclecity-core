@@ -3,11 +3,24 @@ source 'https://rubygems.org'
 # Heroku uses the ruby version to configure your application's runtime.
 ruby '2.2.1'
 
+gem "mapbox-rails"
 gem 'puma'
 gem 'rack-canonical-host'
 gem 'rails', '~> 4.2.0'
 gem 'pg'
-gem 'activerecord-postgis-adapter', github: "rgeo/activerecord-postgis-adapter", branch: "activerecord42"
+gem 'activerecord-postgis-adapter', "3.0.0.beta1"
+gem 'grape'
+gem "andrewhao-gpx", require: "gpx"
+gem "pry-byebug"
+gem "pry"
+gem "interactor"
+gem "newrelic_rpm"
+gem "stressfactor"
+gem "filepicker_client", github: "infowrap/filepicker_client"
+gem "dotenv"
+
+gem "iron_worker_ng"
+gem "faraday"
 
 gem 'slim-rails'
 gem 'sass-rails'
@@ -43,6 +56,7 @@ group :test, :development do
 end
 
 group :development do
+  gem "ruby-prof"
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'foreman'
