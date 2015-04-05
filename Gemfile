@@ -8,7 +8,7 @@ gem 'puma'
 gem 'rack-canonical-host'
 gem 'rails', '~> 4.2.0'
 gem 'pg'
-gem 'activerecord-postgis-adapter', "3.0.0.beta1"
+gem 'activerecord-postgis-adapter', "3.0.0.beta2"
 gem 'grape'
 gem "andrewhao-gpx", require: "gpx"
 gem "pry-byebug"
