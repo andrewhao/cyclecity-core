@@ -125,6 +125,9 @@ GEM
       ruby-progressbar (~> 1.4)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
+    gpx (0.8.2)
+      nokogiri
+      rake
     grape (0.10.1)
       activesupport
       builder
@@ -224,11 +227,10 @@ GEM
     pry-byebug (2.0.0)
       byebug (~> 3.4)
       pry (~> 0.10)
-    puma (2.11.0)
-      rack (>= 1.1, < 2.0)
+    puma (3.0.2)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
-    rack (1.6.0)
+    rack (1.6.4)
     rack-accept (0.4.5)
       rack (>= 0.4)
     rack-canonical-host (0.1.0)
@@ -367,7 +369,6 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgis-adapter (= 3.0.0.beta2)
-  andrewhao-gpx
   awesome_print
   better_errors
   binding_of_caller
@@ -381,6 +382,7 @@ DEPENDENCIES
   filepicker_client!
   foreman
   fuubar
+  gpx
   grape
   growl
   guard (~> 2)
@@ -414,3 +416,6 @@ DEPENDENCIES
   spring-commands-rspec
   stressfactor
   uglifier
+
+BUNDLED WITH
+   1.11.2
