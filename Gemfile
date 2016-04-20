@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Heroku uses the ruby version to configure your application's runtime.
-ruby '2.2.1'
+ruby '2.2.4'
 
 gem "mapbox-rails"
 gem 'puma'
@@ -10,7 +10,7 @@ gem 'rails', '~> 4.2.0'
 gem 'pg'
 gem 'activerecord-postgis-adapter', "3.0.0.beta2"
 gem 'grape'
-gem "andrewhao-gpx", require: "gpx"
+gem "gpx", require: "gpx"
 gem "pry-byebug"
 gem "pry"
 gem "interactor"
