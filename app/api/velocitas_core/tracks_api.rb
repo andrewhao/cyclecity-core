@@ -1,6 +1,6 @@
-# Defines the core upload and view APIs.
+# Defines the core upload and view TracksAPIs.
 module VelocitasCore
-  class API < Grape::API
+  class TracksAPI < Grape::API
     version "v1", vendor: "g9labs"
     format :json
 

@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe "importing from API", type: :request do
   let(:url) { "http://share.abvio.com/5e3ba2f14c227d4b/Runmeter-Run-20150207-0639.gpx" }
 

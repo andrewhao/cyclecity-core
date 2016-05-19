@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe VelocitasCore::API, type: :request do
+describe VelocitasCore::TracksAPI, type: :request do
   describe "GET tracks" do
     it "returns a list of tracks" do
       expected_tracks = ['track']

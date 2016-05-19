@@ -23,3 +23,5 @@ iron.json
 
 # Don't check in env vars to source
 .env
+
+*.swp
