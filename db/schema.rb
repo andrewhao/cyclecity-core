@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210074614) do
+ActiveRecord::Schema.define(version: 20160522061017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20150210074614) do
     t.string   "key",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "commuting_activities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "started_at"
+    t.json     "raw"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "track_analytics", force: :cascade do |t|
@@ -35,13 +43,11 @@ ActiveRecord::Schema.define(version: 20150210074614) do
   add_index "track_analytics", ["track_id"], name: "index_track_analytics_on_track_id", using: :btree
 
   create_table "track_points", force: :cascade do |t|
-    t.st_point "coordinate"
-
-    #t.geography "coordinate", limit: {:srid=>4326, :type=>"point", :geographic=>true}
-    t.decimal   "elevation"
-    t.integer   "heart_rate"
-    t.datetime  "time"
-    t.integer   "track_id"
+    t.geometry "coordinate", limit: {:srid=>0, :type=>"point"}
+    t.decimal  "elevation"
+    t.integer  "heart_rate"
+    t.datetime "time"
+    t.integer  "track_id"
   end
 
   add_index "track_points", ["coordinate"], name: "index_track_points_on_coordinate", using: :gist
