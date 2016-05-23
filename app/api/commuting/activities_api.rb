@@ -8,7 +8,7 @@ module Commuting
       resource :activities do
         desc "See all commutes"
         get do
-          {status: :processing, body: 'got it' }
+          Commuting::Commute.all
         end
 
         desc "upload a commute"
