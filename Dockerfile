@@ -12,4 +12,4 @@ RUN bundle install
 ADD . /velocitas-core
 WORKDIR /velocitas-core
 RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
-CMD ["rm", "tmp/pids/server.pid", "&&", "rails","server","-b","0.0.0.0"]
+CMD ["rails","server","-b","0.0.0.0"]
