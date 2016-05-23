@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523041653) do
+ActiveRecord::Schema.define(version: 20160523044412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,21 @@ ActiveRecord::Schema.define(version: 20160523041653) do
   end
 
   add_index "commuting_commutes", ["strava_activity_id"], name: "index_commuting_commutes_on_strava_activity_id", using: :btree
+
+  create_table "commuting_stop_events", force: :cascade do |t|
+    t.integer   "commuting_stop_report_id_id"
+    t.geography "lonlat",                      limit: {:srid=>4326, :type=>"point", :geographic=>true},             null: false
+    t.datetime  "stopped_at",                                                                                       null: false
+    t.integer   "duration",                                                                             default: 0
+  end
+
+  add_index "commuting_stop_events", ["commuting_stop_report_id_id"], name: "index_commuting_stop_events_on_commuting_stop_report_id_id", using: :btree
+
+  create_table "commuting_stop_reports", force: :cascade do |t|
+    t.integer "strava_activity_id", null: false
+  end
+
+  add_index "commuting_stop_reports", ["strava_activity_id"], name: "index_commuting_stop_reports_on_strava_activity_id", using: :btree
 
   create_table "track_analytics", force: :cascade do |t|
     t.integer  "track_id"
