@@ -17,7 +17,7 @@ describe Commuting::ActivitiesAPI, type: :request do
         stream: [ ] }
     end
 
-    it "queues up an import task and returns a 200 OK" do
+    it "creates a commute object" do
       expect_any_instance_of(Commuting::StoreCommute).to receive(:call)
       post "/api/v1/commuting/activities", json_payload.to_json, 'Content-Type': 'application/json'
       expect(response).to be_created

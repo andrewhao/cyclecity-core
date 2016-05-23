@@ -22,7 +22,7 @@ module Commuting
         post do
           ap params
           command = ::Commuting::StoreCommute.call(payload: params)
-          {status: command.success? ? :created : :error }
+          command.commute
         end
       end
     end
