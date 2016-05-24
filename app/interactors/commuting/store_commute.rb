@@ -4,6 +4,9 @@ module Commuting
 
     def call
       payload = context.payload
+      context.report = context.payload.report
+      context.activity = context.payload.activity
+
       name = payload.activity.activity.name
       date = payload.activity.activity.start_date
       activity_id = payload.activity.activityId
