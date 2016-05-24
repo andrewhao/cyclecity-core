@@ -13,10 +13,8 @@ module Commuting
 
         desc "upload a commute"
         params do
-          requires :activityId, type: Integer
-          optional :name, type: String
+          requires :report, type: Hash
           requires :activity, type: Hash
-          requires :stream, type: Array
         end
 
         post do

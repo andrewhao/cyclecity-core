@@ -4,9 +4,9 @@ module Commuting
 
     def call
       payload = context.payload
-      name = payload.activity.name
-      date = payload.activity.start_date
-      activity_id = payload.activityId
+      name = payload.activity.activity.name
+      date = payload.activity.activity.start_date
+      activity_id = payload.activity.activityId
       context.commute = Commute.create!(raw: payload,
                                         started_at: date,
                                         strava_activity_id: activity_id,
