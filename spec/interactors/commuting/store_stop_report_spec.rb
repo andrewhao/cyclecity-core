@@ -15,12 +15,14 @@ describe Commuting::StoreStopReport do
           elapsedTime: 3
         }
         ]
-      }
+      },
+      commute: commute
     })
   end
 
   describe '.call' do
     subject { described_class.call(params) }
+
     it 'creates a StopReport' do
       expect {
         subject
@@ -32,6 +34,18 @@ describe Commuting::StoreStopReport do
       expect {
         subject
       }.to change { Commuting::StopEvent.count }.by(2)
+    end
+
+    it 'does not create StopEvents if one exists already' do
+      Commuting::StopEvent.create(commuting_commute: commute,
+                                  lonlat: 'POINT(118 1)',
+                                  stopped_at: Time.zone.now)
+      Commuting::StopEvent.create(commuting_commute: commute,
+                                  lonlat: 'POINT(119 2)',
+                                  stopped_at: Time.zone.now)
+      expect {
+        subject
+      }.not_to change { Commuting::StopEvent.count }
     end
   end
 end

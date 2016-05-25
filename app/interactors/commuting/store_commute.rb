@@ -10,10 +10,12 @@ module Commuting
       name = activityDetails.name
       date = activityDetails.start_date
       activity_id = activityDetails.id
-      context.commute = Commute.create!(raw: context.payload,
-                                        started_at: date,
-                                        strava_activity_id: activity_id,
-                                        name: name)
+
+      context.commute = Commute.find_or_create_by!(strava_activity_id: activity_id) do |c|
+        c.raw = context.payload
+        c.started_at = date
+        c.name = name
+      end
     rescue StandardError => e
       Rails.logger.error(e.message)
       context.fail!(message: "Unable to create commute: #{e.message}")

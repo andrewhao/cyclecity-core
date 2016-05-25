@@ -8,12 +8,13 @@ module Commuting
       )
       context.stop_events = context.report.report
       context.stop_events.map do |report|
-        Commuting::StopEvent.create(
-          lonlat: "POINT(#{report.lon} #{report.lat})",
-          stopped_at: report.stopped_at || Time.zone.now,
-          duration: report.elapsedTime,
-          commuting_commute: context.commute
-        )
+        Commuting::StopEvent.find_or_create_by(
+          commuting_commute: context.commute,
+          lonlat: "POINT(#{report.lon} #{report.lat})"
+        ) do |se|
+          se.stopped_at = report.stopped_at || Time.zone.now
+          se.duration = report.elapsedTime
+        end
       end
     end
   end
