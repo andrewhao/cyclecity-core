@@ -3,17 +3,20 @@ require 'rails_helper'
 describe Commuting::StoreStopReport do
   let(:commute) { Commuting::Commute.create }
   let(:params) do
-    { commute: commute,
-      report: [
-        { lat: 1,
-          lon: 118,
-          elapsedTime: 22
+    Hashie::Mash.new({ commute: commute,
+      report: {
+        report: [
+          { lat: 1,
+            lon: 118,
+            elapsedTime: 22
         }, {
           lat: 2,
           lon: 119,
           elapsedTime: 3
         }
-      ] }
+        ]
+      }
+    })
   end
 
   describe '.call' do

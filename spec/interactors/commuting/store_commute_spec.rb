@@ -5,8 +5,8 @@ describe Commuting::StoreCommute do
   let(:commute_data) do
     Hashie::Mash.new({
       activity: {
-        activityId: 123,
         activity: {
+          id: 123,
           name: 'My great commute',
           start_date: started,
         },

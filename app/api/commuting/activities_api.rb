@@ -1,5 +1,11 @@
 # Defines the core upload and view TracksAPIs.
 module Commuting
+  class HandlePost
+    include Interactor::Organizer
+
+    organize StoreCommute, StoreStopReport
+  end
+
   class ActivitiesAPI < Grape::API
     version "v1", vendor: "g9labs"
     format :json
@@ -18,8 +24,8 @@ module Commuting
         end
 
         post do
-          ap params
-          command = ::Commuting::StoreCommute.call(payload: params)
+          command = HandlePost.call(payload: params)
+          status (command.success? ? :created : :unprocessable_entity)
           command.commute
         end
       end

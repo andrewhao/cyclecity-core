@@ -3,19 +3,20 @@ module Commuting
     include Interactor
 
     def call
-      payload = context.payload
       context.report = context.payload.report
       context.activity = context.payload.activity
+      activityDetails = context.activity.activity
 
-      name = payload.activity.activity.name
-      date = payload.activity.activity.start_date
-      activity_id = payload.activity.activityId
-      context.commute = Commute.create!(raw: payload,
+      name = activityDetails.name
+      date = activityDetails.start_date
+      activity_id = activityDetails.id
+      context.commute = Commute.create!(raw: context.payload,
                                         started_at: date,
                                         strava_activity_id: activity_id,
                                         name: name)
-    rescue StandardError
-      context.fail!(message: 'Unable to create commute')
+    rescue StandardError => e
+      Rails.logger.error(e.message)
+      context.fail!(message: "Unable to create commute: #{e.message}")
     end
   end
 end
