@@ -1,4 +1,14 @@
 {
+  "report": {
+    "report": [
+      {
+        "lat": 84,
+        "lon": 118,
+        "elapsedTime": 22
+      }
+    ]
+  },
+  "activity": {
 		"_id": "57414bcb87aee756a75044c7",
     "activityId": 583309346,
     "activity": {
@@ -67,5 +77,5 @@
     "name": "Rambling man",
     "__v": 0,
 		"stream": []
+  }
 }
-

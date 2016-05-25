@@ -4,12 +4,17 @@ describe Commuting::StoreCommute do
   let(:started) { Time.zone.now }
   let(:commute_data) do
     Hashie::Mash.new({
-      activityId: 123,
       activity: {
-        name: 'My great commute',
-        start_date: started,
+        activity: {
+          id: 123,
+          name: 'My great commute',
+          start_date: started,
+        },
+        stream: [],
       },
-      stream: [],
+      report: {
+        activityId: 123
+      }
     })
   end
   let(:params) { { payload: commute_data } }

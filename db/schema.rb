@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523041653) do
+ActiveRecord::Schema.define(version: 20160524143646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,21 @@ ActiveRecord::Schema.define(version: 20160523041653) do
   end
 
   add_index "commuting_commutes", ["strava_activity_id"], name: "index_commuting_commutes_on_strava_activity_id", using: :btree
+
+  create_table "commuting_stop_events", force: :cascade do |t|
+    t.geography "lonlat",               limit: {:srid=>4326, :type=>"point", :geographic=>true},             null: false
+    t.datetime  "stopped_at",                                                                                null: false
+    t.integer   "duration",                                                                      default: 0
+    t.integer   "commuting_commute_id"
+  end
+
+  add_index "commuting_stop_events", ["lonlat"], name: "index_commuting_stop_events_on_lonlat", using: :gist
+
+  create_table "commuting_stop_reports", force: :cascade do |t|
+    t.integer "commuting_commute_id"
+  end
+
+  add_index "commuting_stop_reports", ["commuting_commute_id"], name: "index_commuting_stop_reports_on_commuting_commute_id", using: :btree
 
   create_table "track_analytics", force: :cascade do |t|
     t.integer  "track_id"
@@ -69,5 +84,7 @@ ActiveRecord::Schema.define(version: 20160523041653) do
 
   add_index "tracks", ["path"], name: "index_tracks_on_path", using: :gist
 
+  add_foreign_key "commuting_stop_events", "commuting_commutes"
+  add_foreign_key "commuting_stop_reports", "commuting_commutes"
   add_foreign_key "track_analytics", "tracks"
 end
