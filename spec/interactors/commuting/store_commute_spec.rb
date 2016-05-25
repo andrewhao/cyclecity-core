@@ -33,5 +33,13 @@ describe Commuting::StoreCommute do
       expect(created_commute.strava_activity_id).to eq 123
       expect(created_commute.raw['activity']).to be_instance_of Hash
     end
+
+    it 'does not create an activity dupe' do
+      Commuting::Commute.create(strava_activity_id: 123)
+
+      expect {
+        subject.call
+      }.to_not change { Commuting::Commute.count }
+    end
   end
 end
