@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524143646) do
+ActiveRecord::Schema.define(version: 20160525064854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20160524143646) do
     t.datetime  "stopped_at",                                                                                null: false
     t.integer   "duration",                                                                      default: 0
     t.integer   "commuting_commute_id"
+    t.datetime  "created_at"
+    t.datetime  "updated_at"
   end
 
   add_index "commuting_stop_events", ["lonlat"], name: "index_commuting_stop_events_on_lonlat", using: :gist
