@@ -21,6 +21,7 @@ gem "dotenv"
 
 gem "iron_worker_ng"
 gem "faraday"
+gem 'scenic'
 
 gem 'slim-rails'
 gem 'sass-rails'

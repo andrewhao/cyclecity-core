@@ -25,3 +25,4 @@ iron.json
 .env
 
 *.swp
+*.dump
