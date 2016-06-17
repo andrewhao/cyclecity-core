@@ -9,6 +9,8 @@ gem 'rack-canonical-host'
 gem 'rails', '~> 4.2.0'
 gem 'pg'
 gem 'activerecord-postgis-adapter'
+gem 'rgeo-geojson'
+gem 'kaminari'
 gem 'grape'
 gem "gpx", require: "gpx"
 gem "pry-byebug"
