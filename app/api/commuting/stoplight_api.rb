@@ -22,6 +22,7 @@ module Commuting
         get do
           clusters = Commuting::StopEventCluster.page(params[:page]).per(params[:per_page])
           Rails.logger.info "[StoplightAPI] #get: #{clusters.inspect}"
+          Rails.logger.info "[StoplightAPI] #get: #{clusters.map(&:as_json)}"
           clusters.as_json
         end
       end
