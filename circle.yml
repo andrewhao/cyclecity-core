@@ -9,6 +9,10 @@ test:
   post:
     - bundle exec rake db:sample_data
 
+dependencies:
+  pre:
+    - gem install bundler
+
 deployment:
   acceptance:
     branch: development

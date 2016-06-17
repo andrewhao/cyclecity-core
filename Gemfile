@@ -8,7 +8,9 @@ gem 'puma'
 gem 'rack-canonical-host'
 gem 'rails', '~> 4.2.0'
 gem 'pg'
-gem 'activerecord-postgis-adapter', "3.0.0.beta2"
+gem 'activerecord-postgis-adapter'
+gem 'rgeo-geojson'
+gem 'kaminari'
 gem 'grape'
 gem "gpx", require: "gpx"
 gem "pry-byebug"
@@ -21,6 +23,7 @@ gem "dotenv"
 
 gem "iron_worker_ng"
 gem "faraday"
+gem 'scenic'
 
 gem 'slim-rails'
 gem 'sass-rails'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525064854) do
+ActiveRecord::Schema.define(version: 20160526064302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,4 +89,16 @@ ActiveRecord::Schema.define(version: 20160525064854) do
   add_foreign_key "commuting_stop_events", "commuting_commutes"
   add_foreign_key "commuting_stop_reports", "commuting_commutes"
   add_foreign_key "track_analytics", "tracks"
+
+  create_view :commuting_stop_event_clusters,  sql_definition: <<-SQL
+      SELECT row_number() OVER () AS id,
+      st_numgeometries(f.gc) AS st_numgeometries,
+      f.gc AS geom_collection,
+      st_centroid(f.gc) AS centroid,
+      st_minimumboundingcircle(f.gc) AS circle,
+      sqrt((st_area(st_minimumboundingcircle(f.gc)) / pi())) AS radius
+     FROM ( SELECT unnest(st_clusterwithin((c.lonlat)::geometry, (st_distance(st_geomfromtext('POINT(34.0151661 -118.49075029)'::text, 4326), st_geomfromtext('POINT(34.0153382 -118.4901983)'::text, 4326)) / (10)::double precision))) AS gc
+             FROM commuting_stop_events c) f;
+  SQL
+
 end
