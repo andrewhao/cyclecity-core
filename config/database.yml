@@ -6,7 +6,7 @@ development: &default
   encoding: unicode
   database: velocitas_core_development
   username: postgres
-  host: db
+  host: <%= ENV['USE_LOCALHOST'] == 'true' ? 'localhost' : 'db' %>
   pool: 5
   timeout: 5000
 
@@ -15,7 +15,7 @@ test:
   adapter: postgis
   database: velocitas_core_test
   min_messages: warning
-  host: db
+  host: <%= ENV['USE_LOCALHOST'] == 'true' ? 'localhost' : 'db' %>
 
 acceptance:
   <<: *default
