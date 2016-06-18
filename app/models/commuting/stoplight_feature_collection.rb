@@ -14,8 +14,11 @@ module Commuting
     private
 
     def stoplight_coordinates
-      stoplight_clusters.map(&:centroid).map do |centroid|
-        entity_factory.feature(centroid)
+      stoplight_clusters.map do |cluster|
+        entity_factory.feature(
+          cluster.centroid,
+          title: cluster.id
+        )
       end
     end
 

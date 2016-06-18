@@ -4,39 +4,18 @@ $(function() {
     var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
-      center: [-96, 37.8],
-      zoom: 3
+      center: [-118.4738875, 34.028258],
+      zoom: 13
     });
 
-		var stoplightGeoJSON = {
-			"type": "FeatureCollection",
-			"features": [{
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [-77.03238901390978, 38.913188059745586]
-				},
-				"properties": {
-					"title": "Mapbox DC",
-					"marker-symbol": "monument"
-				}
-			}, {
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [-122.414, 37.776]
-				},
-				"properties": {
-					"title": "Mapbox SF",
-					"marker-symbol": "harbor"
-				}
-			}]
-		};
+    map.addControl(new mapboxgl.Geolocate({position: 'top-left'}));
+    map.addControl(new mapboxgl.Navigation({position: 'top-right'}));
+    //map.addControl(new mapboxgl.Attribution({position: 'bottom-right'}));
 
     map.on('load', function () {
       map.addSource('stoplights', {
         type: 'geojson',
-        data: stoplightGeoJSON
+        data: '/api/v1/commuting/geojson?per_page=100'
       });
 
       map.addLayer({
@@ -44,7 +23,7 @@ $(function() {
         "type": "symbol",
         "source": "stoplights",
         "layout": {
-          "icon-image": "{marker-symbol}-15",
+          "icon-image": "marker-15",
           "text-field": "{title}",
           "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
           "text-offset": [0, 0.6],
