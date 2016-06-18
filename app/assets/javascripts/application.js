@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require mapbox.js
 //= require bootstrap
+//= require stoplight-maps
 //= require_tree .

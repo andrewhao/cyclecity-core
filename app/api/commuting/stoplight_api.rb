@@ -20,14 +20,20 @@ module Commuting
         end
 
         get do
+          Commuting::StopEventCluster.page(params[:page]).per(params[:per_page])
+        end
+      end
+
+      resource :geojson do
+        desc "See all stoplights, in GeoJSON format"
+
+        params do
+          use :pagination
+        end
+
+        get do
           clusters = Commuting::StopEventCluster.page(params[:page]).per(params[:per_page])
-          cluster = clusters.first
-          Rails.logger.info "[StoplightAPI] #get: #{clusters.inspect}"
-          Rails.logger.info "[StoplightAPI] #get: #{clusters.map(&:as_json)}"
-          Rails.logger.info "[StoplightAPI] #get: #{clusters.map(&:centroid)}"
-          Rails.logger.info "[StoplightAPI] #get: #{cluster.centroid}"
-          Rails.logger.info "[StoplightAPI] #get: #{cluster.centroid.inspect}"
-          clusters
+          StoplightFeatureCollection.new(clusters).wrap
         end
       end
     end
