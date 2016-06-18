@@ -113,8 +113,6 @@ Several common features and operational parameters can be set using environment 
 * ```BASIC_AUTH_PASSWORD``` - Enable basic auth with this password.
 * ```BASIC_AUTH_USER``` - Set a basic auth username (not required, password enables basic auth).
 * ```PORT``` - Port to listen on (default: 3000).
-* ```UNICORN_WORKERS``` - Number of unicorn workers to spawn (default: development 1, otherwise 3).
-* ```UNICORN_BACKLOG``` - Depth of unicorn backlog (default: 16).
 
 ### Third Party Services
 
