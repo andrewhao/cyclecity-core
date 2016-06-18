@@ -120,3 +120,7 @@ Several common features and operational parameters can be set using environment 
 
 * Heroku for hosting.
 * CircleCI for continuous integration and deployment.
+
+#### Heroku needs a buildpack:
+
+    $ heroku buildpacks:add https://github.com/cyberdelia/heroku-geo-buildpack.git#1.3
