@@ -15,7 +15,7 @@ $(function() {
     map.on('load', function () {
       map.addSource('stoplights', {
         type: 'geojson',
-        data: '/api/v1/commuting/geojson?per_page=100'
+        data: '/api/v1/commuting/geojson?per_page=1000'
       });
 
       map.addLayer({
