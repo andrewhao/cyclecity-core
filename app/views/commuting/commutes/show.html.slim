@@ -1,0 +1,19 @@
+.page-header
+  h1 Commute
+
+dl
+  dt Name
+  dd= @commuting_commute.name
+  dt Date
+  dd= @commuting_commute.started_at
+
+
+/- if can?(:edit, @commuting_commute)
+= link_to text_with_icon('Edit', 'edit'), edit_commute_path(@commuting_commute), class: 'btn btn-default'
+'
+= link_to text_with_icon('Back', 'chevron-left'), commutes_path, class: 'btn btn-default'
+
+/- if can?(:destroy, @commuting_commute)
+'
+= link_to text_with_icon('Destroy', 'remove'), commute_path(@commuting_commute), \
+          method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger'

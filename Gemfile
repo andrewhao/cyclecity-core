@@ -20,6 +20,7 @@ gem "newrelic_rpm"
 gem "stressfactor"
 gem "filepicker_client", github: "infowrap/filepicker_client"
 gem "dotenv"
+gem 'active_model_serializers'
 
 gem "iron_worker_ng"
 gem "faraday"

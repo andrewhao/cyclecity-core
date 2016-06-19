@@ -1,0 +1,11 @@
+= simple_form_for(@commuting_commute) do |f|
+  = f.error_notification
+
+  .form-inputs
+
+  .form-actions
+    = button_tag(type: 'submit', class: 'btn btn-primary') do
+      = text_with_icon("#{btn_action_prefix} Commuting commute", action_icon_name)
+    '
+    = link_to text_with_icon('Back', 'chevron-left'), commuting_commutes_path, class: 'btn btn-default'
+
