@@ -10,11 +10,23 @@ module Commuting
     version "v1", vendor: "g9labs"
     format :json
 
+    helpers do
+      params :pagination do
+        optional :page, type: Integer
+        optional :per_page, type: Integer
+      end
+    end
+
     namespace :commuting do
       resource :activities do
         desc "See all commutes"
+
+        params do
+          use :pagination
+        end
+
         get do
-          Commuting::Commute.all
+          Commuting::Commute.page(params[:page]).per(params[:per_page])
         end
 
         desc "upload a commute"

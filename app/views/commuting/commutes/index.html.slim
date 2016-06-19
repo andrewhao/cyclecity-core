@@ -1,0 +1,31 @@
+div.page-header
+  h1 Listing commutes
+
+table.table.table-striped
+  thead
+    tr
+      th ID
+      th Name
+      th Date
+      th Strava ID
+      th Actions
+
+  tbody
+    - @commuting_commutes.each do |commute|
+      tr
+        /td= link_to_if can?(:show, commuting_commute), commuting_commute.id, commuting_commute_path(commuting_commute)
+        /td= link_to commuting_commute.id, commuting_commute_path(commuting_commute)
+        td= link_to(commute.id, commute_path(commute))
+        td= commute.name
+        td= commute.started_at
+        td= commute.strava_activity_id
+        td
+          /- if can? :edit, commute
+          = link_to text_with_icon('Edit', 'edit'), edit_commute_path(commute), class: 'btn btn-default btn-xs'
+          '
+          /- if can? :destroy, commute
+          = link_to text_with_icon('Destroy', 'remove'), commute_path(commute), \
+                    method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-default btn-xs btn-danger'
+
+/- if can? :create, CommutingCommute
+= link_to text_with_icon('New Commute', 'plus'), new_commute_path, class: 'btn btn-primary'
