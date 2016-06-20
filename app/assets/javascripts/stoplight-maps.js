@@ -1,6 +1,6 @@
 $(function() {
   if ($('.js-mapbox').length > 0) {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYW5kcmV3aGFvIiwiYSI6IndWNDBXRkkifQ.Cge0ieORVxF2tPArcg0c6g';
+    mapboxgl.accessToken = window.mapboxAccessToken;
     var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
@@ -24,12 +24,36 @@ $(function() {
         "source": "stoplights",
         "layout": {
           "icon-image": "marker-15",
-          "text-field": "{title}",
-          "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-          "text-offset": [0, 0.6],
-          "text-anchor": "top"
+					"icon-allow-overlap": true
         }
       });
     });
-  };
+
+		// When a click event occurs near a marker icon, open a popup at the location of
+		// the feature, with description HTML from its properties.
+		map.on('click', function (e) {
+			var features = map.queryRenderedFeatures(e.point, { layers: ['stoplights'] });
+
+			if (!features.length) {
+				return;
+			}
+
+			var feature = features[0];
+
+			// Populate the popup and set its coordinates
+			// based on the feature found.
+			var popup = new mapboxgl.Popup()
+			.setLngLat(feature.geometry.coordinates)
+			.setHTML('Total stops: ' + feature.properties.count + ', average wait: ' +
+               feature.properties.average_stop_duration + ' seconds')
+			.addTo(map);
+		});
+
+		// Use the same approach as above to indicate that the symbols are clickable
+		// by changing the cursor style to 'pointer'.
+		map.on('mousemove', function (e) {
+			var features = map.queryRenderedFeatures(e.point, { layers: ['stoplights'] });
+			map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+		});
+  }
 });

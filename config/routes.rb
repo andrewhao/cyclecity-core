@@ -1,8 +1,9 @@
 VelocitasCore::Application.routes.draw do
   resources :tracks
-  resources :stoplights, only: [:index, :show]
+
   scope module: :commuting do
     resources :commutes
+    resources :stoplights, only: [:index, :show]
   end
 
   root to: 'pages#root'

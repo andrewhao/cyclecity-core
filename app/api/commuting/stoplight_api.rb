@@ -32,7 +32,7 @@ module Commuting
         end
 
         get do
-          clusters = Commuting::StopEventCluster.page(params[:page]).per(params[:per_page])
+          clusters = Commuting::StopEventCluster.query.page(params[:page]).per(params[:per_page])
           StoplightFeatureCollection.new(clusters).wrap
         end
       end

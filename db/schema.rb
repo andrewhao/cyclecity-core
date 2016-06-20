@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526064302) do
+ActiveRecord::Schema.define(version: 20160620184738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20160526064302) do
 
   create_view :commuting_stop_event_clusters,  sql_definition: <<-SQL
       SELECT row_number() OVER () AS id,
-      st_numgeometries(f.gc) AS st_numgeometries,
+      st_numgeometries(f.gc) AS cluster_count,
       f.gc AS geom_collection,
       st_centroid(f.gc) AS centroid,
       st_minimumboundingcircle(f.gc) AS circle,
