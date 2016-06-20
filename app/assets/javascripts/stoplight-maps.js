@@ -44,7 +44,8 @@ $(function() {
 			// based on the feature found.
 			var popup = new mapboxgl.Popup()
 			.setLngLat(feature.geometry.coordinates)
-			.setHTML('Total stops: ' + feature.properties.count)
+			.setHTML('Total stops: ' + feature.properties.count + ', average wait: ' +
+               feature.properties.average_stop_duration + ' seconds')
 			.addTo(map);
 		});
 
