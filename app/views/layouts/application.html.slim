@@ -1,7 +1,7 @@
 doctype 5
 html
   head
-    title Stressor Core
+    title Cyclecity
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
 
@@ -9,6 +9,7 @@ html
     link href='https://api.mapbox.com/mapbox-gl-js/v0.20.0/mapbox-gl.css' rel='stylesheet'
 
     = csrf_meta_tag
+
     meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
 
   body id=(controller.controller_name) class=(controller.action_name)
@@ -20,9 +21,10 @@ html
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            a.navbar-brand href='/' Stressor Core
+            a.navbar-brand href='/' Cyclecity
           .collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-right
+              li= link_to text_with_icon('Stoplights', 'map-marker'), stoplights_path
               / - if current_user
               /  li.dropdown
               /    a.dropdown-toggle href='#' data-toggle='dropdown'
@@ -43,3 +45,4 @@ html
     footer
       .container
         p &copy; #{Date.current.year} All rights reserved.
+    = render 'layouts/mapbox'

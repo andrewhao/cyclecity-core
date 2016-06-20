@@ -17,7 +17,9 @@ module Commuting
       stoplight_clusters.map do |cluster|
         entity_factory.feature(
           cluster.centroid,
-          title: cluster.id
+          cluster.id,
+          title: cluster.id,
+          count: cluster.cluster_count
         )
       end
     end

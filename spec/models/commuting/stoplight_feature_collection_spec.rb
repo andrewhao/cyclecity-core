@@ -18,5 +18,10 @@ describe Commuting::StoplightFeatureCollection do
       expect(feature['type']).to eq 'Feature'
       expect(feature['geometry']).to eq({ 'type' => 'Point', 'coordinates' => [10.0, 20.0] })
     end
+
+    it 'annotates with metadata' do
+      feature = subject.wrap['features'].first
+      expect(feature['properties']).to eq('count' => 1, 'title' => 1)
+    end
   end
 end
