@@ -6,7 +6,7 @@ VelocitasCore::Application.routes.draw do
     resources :stoplights, only: [:index, :show]
   end
 
-  root to: 'pages#root'
+  root to: 'commuting/stoplights#index'
   mount Commuting::ActivitiesAPI => '/api'
   mount Commuting::StoplightAPI => '/api'
   mount VelocitasCore::TracksAPI => '/api'
