@@ -36,6 +36,19 @@ module Commuting
           StoplightFeatureCollection.new(clusters).wrap
         end
       end
+
+      resource :circle_geojson do
+        desc "See all stoplight circle geometries, in GeoJSON format"
+
+        params do
+          use :pagination
+        end
+
+        get do
+          clusters = Commuting::StopEventCluster.query.page(params[:page]).per(params[:per_page])
+          StoplightFeatureCollection.new(clusters).wrap_circles
+        end
+      end
     end
   end
 end
