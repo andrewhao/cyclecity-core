@@ -3,7 +3,7 @@ $(function() {
     mapboxgl.accessToken = window.mapboxAccessToken;
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v9',
+      style: 'mapbox://styles/mapbox/light-v9',
       center: [-118.4738875, 34.028258],
       zoom: 13
     });
@@ -52,7 +52,7 @@ $(function() {
         },
         "paint": {
           'fill-color': '#088',
-          'fill-opacity': 0.5
+          'fill-opacity': 0.3
         }
       });
 
@@ -63,14 +63,57 @@ $(function() {
 
       map.addLayer({
         "id": "stoplights",
-        "type": "symbol",
+        "type": "circle",
         "source": "stoplights",
         "layout": {
           "visibility": "visible",
-          "icon-image": "marker-15",
-          "icon-allow-overlap": true
+        },
+        paint: {
+          "circle-color": {
+            property: 'average_stop_duration',
+            stops: [
+              [0, 'blue'],
+              [10, 'green'],
+              [30, 'yellow'],
+              [60, 'red']
+            ]
+          },
+          "circle-radius": {
+            property: 'count',
+            stops: [
+              [1, 3],
+              [10, 4],
+              [20, 5]
+            ]
+          }
         }
       });
+
+      var gradientLevels = [
+        { color: 'red',
+          minThreshold: 100 },
+        { color: 'yellow',
+          minThreshold: 50 },
+        { color: 'green',
+          minThreshold: 0 }
+      ];
+
+      //gradientLevels.forEach(function(level, i) {
+      //  map.addLayer({
+      //    "id": "stoplights-heatmap-" + i,
+      //    "type": "circle",
+      //    "source": "stoplights",
+      //    "paint": {
+      //      "circle-color": layer.color,
+      //      "circle-radius": 70,
+      //      "circle-blur": 1
+      //    },
+      //    "filter": i === layers.length - 1 ?
+      //      [">=", "cluster_count", layers] :
+      //      []
+      //  });
+      //});
+
     });
 
     initializeMapLayerButton('Debug', 'stoplight_circles');
