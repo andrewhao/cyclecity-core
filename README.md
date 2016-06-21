@@ -3,6 +3,7 @@
 The core API behind the Cyclecity GPS route analytics service.
 
 [![Code Climate](https://codeclimate.com/github/andrewhao/cyclecity-core/badges/gpa.svg)](https://codeclimate.com/github/andrewhao/cyclecity-core)
+[![CircleCI](https://circleci.com/gh/andrewhao/cyclecity-core.svg?style=svg)](https://circleci.com/gh/andrewhao/cyclecity-core)
 
 Generated with [Raygun](https://github.com/carbonfive/raygun).
 
