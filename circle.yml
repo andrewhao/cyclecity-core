@@ -14,14 +14,8 @@ dependencies:
     - gem install bundler
 
 deployment:
-  acceptance:
-    branch: development
-    commands:
-      - ./bin/deploy.sh velocitas-core-acceptance:
-          timeout: 360
-
   production:
-    branch: master 
+    branch: master
     commands:
-      - ./bin/deploy.sh velocitas-core:
+      - ./bin/deploy.sh cyclecity-core:
           timeout: 360

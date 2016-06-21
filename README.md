@@ -1,8 +1,8 @@
-# Velocitas Core
+# Cyclecity Core
 
-The core API behind the Velocitas GPS route analytics service.
+The core API behind the Cyclecity GPS route analytics service.
 
-[![Code Climate](https://codeclimate.com/github/andrewhao/velocitas-core/badges/gpa.svg)](https://codeclimate.com/github/andrewhao/velocitas-core)
+[![Code Climate](https://codeclimate.com/github/andrewhao/cyclecity-core/badges/gpa.svg)](https://codeclimate.com/github/andrewhao/cyclecity-core)
 
 Generated with [Raygun](https://github.com/carbonfive/raygun).
 
