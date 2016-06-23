@@ -3,7 +3,7 @@
 require ::File.expand_path('../config/environment', __FILE__)
 
 # Redirect to the custom (canonical) hostname.
-#use Rack::CanonicalHost, ENV['HOSTNAME'] if ENV['HOSTNAME']
+use Rack::CanonicalHost, ENV['HOSTNAME'] if ENV['HOSTNAME']
 
 # Use AR connection pool for Grape APIs
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
