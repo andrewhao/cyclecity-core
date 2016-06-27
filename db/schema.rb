@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620184738) do
+ActiveRecord::Schema.define(version: 20160627232958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160620184738) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "strava_activity_id"
+    t.integer  "strava_athlete_id"
   end
 
   add_index "commuting_commutes", ["strava_activity_id"], name: "index_commuting_commutes_on_strava_activity_id", using: :btree

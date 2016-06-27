@@ -24,18 +24,23 @@ html
             a.navbar-brand href='/' Cyclecity.io
           .collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-right
-              li
-                a Commute intelligence for the pedal-powered
-              / li= link_to text_with_icon('Stoplights', 'map-marker'), stoplights_path
-              / - if current_user
-              /  li.dropdown
-              /    a.dropdown-toggle href='#' data-toggle='dropdown'
-              /      = current_user.email
-              /      b.caret
-              /    ul.dropdown-menu
-              /      li= link_to text_with_icon('Sign Out', 'log-out'), sign_out_path
-              / - else
-              /  li= link_to text_with_icon('Sign In', 'log-in'), sign_in_path
+              li= link_to text_with_icon('IQ Map', 'map-marker'), stoplights_path
+              - if user_signed_in?
+                li= link_to text_with_icon('My commutes', 'map-marker'), commutes_path
+                li.dropdown
+                  a.dropdown-toggle href='#' data-toggle='dropdown'
+                    = current_user.email
+                    b.caret
+                  ul.dropdown-menu
+                    li= link_to text_with_icon('Sign Out', 'log-out'), logout_path, method: :post
+                    li
+                      ul
+                        - current_user.to_h.as_json.each do |key, val|
+                          li
+                            strong= key
+                            span= ": #{val}"
+              - else
+                li= link_to text_with_icon('Sign In', 'log-in'), '#'
 
       .container-fluid
         - flash.each do |name, msg|
