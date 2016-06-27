@@ -1,14 +1,14 @@
 require "rails_helper"
 
-describe Commuting::ActivitiesAPI, type: :request do
-  describe "GET activities" do
+describe Commuting::CommutesAPI, type: :request do
+  describe "GET commutes" do
     it "returns 200 OK" do
-      get "/api/v1/commuting/activities"
+      get "/api/v1/commuting/commutes"
       expect(response).to be_ok
     end
   end
 
-  describe "POST activities" do
+  describe "POST commutes" do
     let(:json_payload) do
       {
         activity: {
@@ -26,7 +26,7 @@ describe Commuting::ActivitiesAPI, type: :request do
     it "creates a commute object" do
       expect_any_instance_of(Commuting::StoreCommute).to receive(:call)
       expect_any_instance_of(Commuting::StoreStopReport).to receive(:call)
-      post "/api/v1/commuting/activities", json_payload.to_json, 'Content-Type': 'application/json'
+      post "/api/v1/commuting/commutes", json_payload.to_json, 'Content-Type': 'application/json'
       expect(response).to be_created
     end
   end

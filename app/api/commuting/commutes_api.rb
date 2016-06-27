@@ -6,7 +6,7 @@ module Commuting
     organize StoreCommute, StoreStopReport
   end
 
-  class ActivitiesAPI < Grape::API
+  class CommutesAPI < Grape::API
     version "v1", vendor: "g9labs"
     format :json
 
@@ -18,7 +18,7 @@ module Commuting
     end
 
     namespace :commuting do
-      resource :activities do
+      resource :commutes do
         desc "See all commutes"
 
         params do
