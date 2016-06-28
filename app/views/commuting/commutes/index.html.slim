@@ -1,5 +1,5 @@
 div.page-header
-  h1 Listing commutes
+  h1 My commutes
 
 table.table.table-striped
   thead
@@ -7,6 +7,7 @@ table.table.table-striped
       th ID
       th Name
       th Date
+      th Strava User ID
       th Strava ID
       th Actions
 
@@ -18,6 +19,7 @@ table.table.table-striped
         td= link_to(commute.id, commute_path(commute))
         td= commute.name
         td= commute.started_at
+        td= commute.strava_athlete_id
         td= commute.strava_activity_id
         td
           /- if can? :edit, commute
