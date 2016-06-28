@@ -5,8 +5,9 @@ describe Commuting::CommutesController do
   # This should return the minimal set of attributes required to create a valid
   # Commuting::Commute. As you add validations to Commuting::Commute, be sure to
   # adjust the attributes here as well.
+  let(:athlete_id) { 12345 }
   let(:valid_attributes) {
-    { name: 'hello', started_at: Time.zone.now }
+    { name: 'hello', started_at: Time.zone.now, strava_athlete_id: athlete_id }
   }
 
   let(:invalid_attributes) {
@@ -16,11 +17,13 @@ describe Commuting::CommutesController do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # Commuting::CommutesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:current_user) { { id: 123, strava_athlete_id: athlete_id } }
+  let(:valid_session) { { current_user: OpenStruct.new(current_user) } }
 
   describe "GET #index" do
     it "assigns all commuting_commutes as @commuting_commutes" do
       commute = Commuting::Commute.create! valid_attributes
+      create(:commuting_commute, strava_athlete_id: 999)
       get :index, {}, valid_session
       expect(assigns(:commuting_commutes)).to eq([commute])
     end

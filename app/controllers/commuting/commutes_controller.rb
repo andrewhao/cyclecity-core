@@ -3,7 +3,9 @@ class Commuting::CommutesController < ApplicationController
   before_action :ensure_logged_in
 
   def index
-    @commuting_commutes = Commuting::Commute.order(id: :desc)
+    @commuting_commutes = Commuting::Commute
+      .where(strava_athlete_id: current_user.strava_athlete_id)
+      .order(id: :desc)
   end
 
   def show
