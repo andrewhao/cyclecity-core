@@ -145,5 +145,16 @@ $(function() {
       var features = map.queryRenderedFeatures(e.point, { layers: ['stoplights'] });
       map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
     });
+
+    // Reverse geoIP lookup for map center from this browser
+    jQuery.ajax({
+      url: '//freegeoip.net/json/',
+      type: 'POST',
+      dataType: 'jsonp',
+      success: function(location) {
+        console.log(location);
+        map.setCenter([location.longitude, location.latitude]);
+      }
+    });
   }
 });
