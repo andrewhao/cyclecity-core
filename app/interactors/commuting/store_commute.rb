@@ -9,11 +9,13 @@ module Commuting
 
       name = activityDetails.name
       date = activityDetails.start_date
+      athlete_id = activityDetails.athlete.id
       activity_id = activityDetails.id
 
       context.commute = Commute.find_or_create_by!(strava_activity_id: activity_id) do |c|
         c.raw = context.payload
         c.started_at = date
+        c.strava_athlete_id = athlete_id
         c.name = name
       end
     rescue StandardError => e
